@@ -1,5 +1,5 @@
 master:
-  image: catawiki/docker-spark
+  image: janschultecom/docker-spark
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master -h master
   hostname: master
   environment:
@@ -38,7 +38,7 @@ worker:
     - logfiles
 
 history:
-  image: catawiki/docker-spark
+  image: janschultecom/docker-spark
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.history.HistoryServer
   hostname: history
   environment:
