@@ -1,0 +1,7 @@
+worker:
+  image: janschultecom/docker-spark
+  command: /usr/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master.weave.local:7077
+  environment:
+    SPARK_CONF_DIR: /conf
+  volumes:
+    - ./conf/worker:/conf

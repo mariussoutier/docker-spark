@@ -1,10 +1,11 @@
 master:
   image: janschultecom/docker-spark
-  command: /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master -h master
-  hostname: master
+  command: /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master -h spark-master.weave.local
+  container_name: spark-master
+  hostname: spark-master.weave.local
   environment:
     SPARK_CONF_DIR: /conf
-    SPARK_MASTER_IP: master
+    #SPARK_MASTER_IP: spark-master.weave.local
   expose:
     - 7001
     - 7002
@@ -21,19 +22,6 @@ master:
     - 8080:8080
   volumes:
     - ./conf/master:/conf
-  volumes_from:
-    - logfiles
-
-worker:
-  image: catawiki/docker-spark
-  command: /usr/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
-  hostname: worker
-  environment:
-    SPARK_CONF_DIR: /conf
-  links:
-    - master
-  volumes:
-    - ./conf/worker:/conf
   volumes_from:
     - logfiles
 
